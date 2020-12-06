@@ -122,7 +122,7 @@ describe('favourite blog', () => {
 
 describe('author with most blogs', () => {
 
-	test('of an empty list is null', () => {
+	test('of an empty list is 0', () => {
 		expect(listHelper.mostBlogs(empty)).toEqual(0)
 	})
 
@@ -134,5 +134,22 @@ describe('author with most blogs', () => {
 		}
 
 		expect(listHelper.mostBlogs(blogs)).toEqual(ex)
+	})
+})
+
+
+describe('author with most likes', () => {
+	test('of an empty list is 0', () => {
+		expect(listHelper.mostLikes(empty)).toBe(0)
+	})
+
+	test('of a proper list gives correct answer', () => {
+		const ex = {
+			author: "Edsger W. Dijkstra",
+			likes: 17
+		}
+
+		expect(listHelper.mostLikes(blogs)).toEqual(ex)
+
 	})
 })

@@ -68,6 +68,39 @@ const mostBlogs = (blogs) =>  {
 
 }
 
+const mostLikes = (blogs) => {
+	if(blogs.length === 0) { return 0 }
+
+
+	var map = new Map()
+    var maxVal = blogs[0]
+    var maxLikes = 0
+
+    for(var i = 0; i < blogs.length; i++) {
+    	var current = blogs[i]
+
+    	if(map.get(current.author) === undefined) {
+    		map.set(current.author, current.likes)
+    	} else {
+    		map.set(current.author, map.get(current.author) + current.likes)
+    	}
+
+    	if(map.get(current.author) > maxLikes) {
+    		maxLikes = map.get(current.author)
+    		maxVal = current.author
+    	}
+    }
+
+    const obj = {
+    	author: maxVal,
+    	likes: maxLikes
+    }
+
+    return obj
+
+
+}
+
 module.exports = {
-  dummy, totalLikes, favouriteBlog, mostBlogs
+  dummy, totalLikes, favouriteBlog, mostBlogs, mostLikes
 }
